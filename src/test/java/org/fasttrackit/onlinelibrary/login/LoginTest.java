@@ -1,4 +1,4 @@
-package feature.login;
+package org.fasttrackit.onlinelibrary.login;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         format = {"pretty", "html:target/cucumber","json:target/jsonReports/LoginTest.json"},
         glue = {
-                "feature.util",
-                "feature.login"
+                "org.fasttrackit.util",
+                "org.fasttrackit.onlinelibrary.login"
         },
         features = {
                 "src/test/resources/feature/login/login.feature"

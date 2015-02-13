@@ -1,4 +1,4 @@
-package org.fasttrackit.web.example.views;
+package org.fasttrackit.example.views;
 
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.link.WebLink;
@@ -6,7 +6,7 @@ import com.sdl.selenium.web.link.WebLink;
 public class MenuLinks extends WebLocator {
 
     public MenuLinks() {
-        setTag("nav");
+        setId("top-menu");
     }
 
     public WebLink homeLink = new WebLink(this, "HOME");

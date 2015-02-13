@@ -1,17 +1,18 @@
-package feature.util;
+package org.fasttrackit.util;
 
 import com.sdl.selenium.web.WebDriverConfig;
 import com.sdl.selenium.web.utils.Utils;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 public class GlobalHooks {
-    private static final Logger LOGGER = Logger.getLogger(GlobalHooks.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalHooks.class);
 
     @After("@screen")
     public void screen(Scenario scenario) {

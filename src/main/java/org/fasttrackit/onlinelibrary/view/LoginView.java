@@ -1,4 +1,4 @@
-package org.fasttrackit.web.onlinelibrary.view;
+package org.fasttrackit.onlinelibrary.view;
 
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;

@@ -1,10 +1,10 @@
-package feature.login;
+package org.fasttrackit.onlinelibrary.login;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fasttrackit.web.onlinelibrary.view.LoginView;
-import org.fasttrackit.web.onlinelibrary.view.TopMenuNavigationView;
-import feature.util.TestBase;
+import org.fasttrackit.onlinelibrary.view.LoginView;
+import org.fasttrackit.onlinelibrary.view.TopMenuNavigationView;
+import org.fasttrackit.util.TestBase;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

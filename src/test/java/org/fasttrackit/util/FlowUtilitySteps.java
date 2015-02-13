@@ -1,4 +1,4 @@
-package feature.util;
+package org.fasttrackit.util;
 
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebDriverConfig;
@@ -25,31 +25,6 @@ public class FlowUtilitySteps extends TestBase {
         Utils.sleep(seconds * 1000);
     }
 
-    @When("^I click on link with text \"([^\"]*)\"$")
-    public void I_click_on_link_with_text(String text) throws Throwable {
-        WebLink link = new WebLink().setText(text);
-        link.assertClick();
-    }
-
-    @When("^I click on input button with text \"([^\"]*)\"$")
-    public void I_click_on_input_button_with_text(String text) throws Throwable {
-        InputButton button = new InputButton().setText(text);
-        button.assertClick();
-    }
-
-    @Then("^I should see web element with text \"([^\"]*)\"$")
-    public void assertHaveElementWithText(String text) throws Throwable {
-        WebLocator element = new WebLocator().setText(text);
-        assertThatElementIsReady(element);
-    }
-
-    @Then("^I should see following web elements with texts \"(.*)\"$")
-    public void assertHaveElementsWithText(List<String> texts) throws Throwable {
-        for (String text : texts) {
-            assertHaveElementWithText(text);
-        }
-    }
-
     @When("^I open url \"([^\"]*)\"$")
     public void I_open_LC_path(String url) throws Throwable {
         AppUtils.openUrl(url);
@@ -64,12 +39,5 @@ public class FlowUtilitySteps extends TestBase {
     @Given("^I maximize browser$")
     public void maximizeBrowser() throws Throwable {
         WebDriverConfig.getDriver().manage().window().maximize();
-    }
-
-    @When("^I type \"([^\"]*)\" into text field with label \"([^\"]*)\"$")
-    public void I_type_into_text_field_with_label(String value, String label) throws Throwable {
-        SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF)
-                .setLabelPosition("//following-sibling::"); // until deploy is done
-        field.setValue(value);
     }
 }

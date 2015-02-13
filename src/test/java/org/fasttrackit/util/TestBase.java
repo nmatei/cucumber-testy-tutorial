@@ -1,4 +1,4 @@
-package feature.util;
+package org.fasttrackit.util;
 
 import com.sdl.selenium.web.Browser;
 import com.sdl.selenium.web.WebDriverConfig;
