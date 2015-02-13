@@ -1,5 +1,7 @@
 package org.fasttrackit.onlinelibrary.login;
 
+import com.sdl.selenium.web.SearchType;
+import com.sdl.selenium.web.link.WebLink;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.onlinelibrary.view.LoginView;
@@ -15,10 +17,13 @@ public class LoginSteps extends TestBase {
     private TopMenuNavigationView topMenuNavigation = new TopMenuNavigationView();
     private LoginView loginView = new LoginView();
 
+    @When("^I click on Login button from top navigation menu$")
+    public void I_click_on_Login_button_from_top_navigation_menu() throws Throwable {
+        topMenuNavigation.loginButton.assertClick();
+    }
+    
     @When("^I login using \"([^\"]*)\"/\"([^\"]*)\"$")
     public void I_login_using_(String user, String password) throws Throwable {
-        topMenuNavigation.loginButton.assertClick();
-
         loginView.login(user, password);
     }
 
@@ -32,5 +37,4 @@ public class LoginSteps extends TestBase {
         boolean ready = loginView.userNotFoundErrorElement.ready();
         Assert.assertTrue("Element is not found : " + loginView.invalidUserErrorElement, ready);
     }
-
 }
