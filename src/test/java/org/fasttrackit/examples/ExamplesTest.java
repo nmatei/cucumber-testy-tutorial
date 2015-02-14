@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @CucumberOptions(
-        format = {"pretty", "html:target/cucumber","json:target/jsonReports/ExamplesTest.json"},
+        plugin = {"pretty", "html:target/cucumber","json:target/jsonReports/ExamplesTest.json"},
         glue = {
                 "org.fasttrackit.util",
                 "org.fasttrackit.examples"

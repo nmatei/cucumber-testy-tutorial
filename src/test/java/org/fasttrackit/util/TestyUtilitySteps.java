@@ -16,12 +16,12 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class TestyUtilitySteps  extends TestBase {
+public class TestyUtilitySteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestyUtilitySteps.class);
 
     @When("^I click on link with text \"([^\"]*)\"$")
     public void I_click_on_link_with_text(String text) throws Throwable {
-        WebLink link = new WebLink().setText(text, SearchType.EQUALS);
+        WebLink link = new WebLink().setText(text);
         link.assertClick();
     }
     

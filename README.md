@@ -10,5 +10,7 @@ Running the Tests:
 	
 For Running specific Test add system parameter "test":
 	 
+	 mvn clean test -DfailIfNoTests=false -Dtest=ExamplesTest
 	 mvn clean test -DfailIfNoTests=false -Dtest=LoginTest
-	 
+	 mvn clean test -DfailIfNoTests=false -Dtest=AccountTest
+

@@ -1,7 +1,6 @@
 package org.fasttrackit.onlinelibrary.login;
 
-import com.sdl.selenium.web.SearchType;
-import com.sdl.selenium.web.link.WebLink;
+import com.sdl.selenium.web.WebLocator;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.onlinelibrary.view.LoginView;
@@ -34,7 +33,8 @@ public class LoginSteps extends TestBase {
     
     @Then("^login should fail$")
     public void loginShouldFail() {
-        boolean ready = loginView.userNotFoundErrorElement.ready();
-        Assert.assertTrue("Element is not found : " + loginView.invalidUserErrorElement, ready);
+        WebLocator error = new WebLocator().setTag("strong").setText("Error:");
+        boolean ready = error.ready();
+        Assert.assertTrue("Element is not found : " + error, ready);
     }
 }

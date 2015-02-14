@@ -1,15 +1,25 @@
 @screen
 Feature: Customer I can login to web site
 
-  Scenario: Fail login detailed
+  Scenario: Fail login detailed using email
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
     When I click on link with text "Log In"
     And I type "no@login.eu" into text field with label "Username or email address"
     And I click on fake Password field
     And I type "badpass" into text field with label "Password"
     And I click on input button with text "Login"
-    Then I should see web element with text "A user could not be found with this email address."
+    Then I should see web element with text " A user could not be found with this email address."
+  
+  Scenario: failed login using username
+    Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
+    When I login using "wronguser"/"pass"
+    Then I should see following web elements with texts ": Invalid username. ,Lost your password"
     
+  Scenario: Password is required
+    Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
+    When I login using "wronguser"/""
+    Then I should see following web elements with texts " Password is required."
+
   Scenario: Fail login
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
     When I click on Login button from top navigation menu
@@ -31,11 +41,6 @@ Feature: Customer I can login to web site
   Scenario: Successfully login
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
     When I login using "admin"/"library"
+
+  Scenario: Force logout
     Then I click on link with text "Log Out"
-    
-  Scenario: User has correct Billing Address
-    Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
-    When I login using "admin"/"library"
-    And I click on link with text "Edit"
-    And text field with label "Email Address" should have value "em_mihai@yahoo.com"
-    And I click on link with text "Log Out"
