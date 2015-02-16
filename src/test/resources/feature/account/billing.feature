@@ -12,7 +12,7 @@ Feature: As a Customer I can edit my billing address
     And text field with label "Phone" should have value "0746827609"
     
   Scenario: User can change zip code in Billing Address
-    Given I type "10016" into text field with label "Zip"
+    Given I type "10016" into "Zip" field
     When I click on input button with text "Save Address"
     Then I should see web element with text "Address changed successfully."
     And I should see web element with text "New York, NY 10016"

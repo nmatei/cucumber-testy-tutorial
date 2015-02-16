@@ -4,9 +4,9 @@ Feature: Customer I can login to web site
   Scenario: Fail login detailed using email
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
     When I click on link with text "Log In"
-    And I type "no@login.eu" into text field with label "Username or email address"
+    And I type "no@login.eu" into "Username or email address" field
     And I click on fake Password field
-    And I type "badpass" into text field with label "Password"
+    And I type "badpass" into "Password" field
     And I click on input button with text "Login"
     Then I should see web element with text " A user could not be found with this email address."
   
@@ -30,9 +30,9 @@ Feature: Customer I can login to web site
   Scenario: Successfully login detailed
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
     When I click on link with text "Log In"
-    And I type "admin" into text field with label "Username or email address"
+    And I type "admin" into "Username or email address" field
     And I click on fake Password field
-    And I type "library" into text field with label "Password"
+    And I type "library" into "Password" field
     And I click on input button with text "Login"
     Then I should see web element with text "Log Out"
     And I should see following web elements with texts "Recent Orders, My Addresses, Billing Address, Shipping Address"

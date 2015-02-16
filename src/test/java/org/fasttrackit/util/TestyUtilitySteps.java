@@ -5,7 +5,6 @@ import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
 import com.sdl.selenium.web.form.SimpleTextField;
 import com.sdl.selenium.web.link.WebLink;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.slf4j.Logger;
@@ -50,7 +49,13 @@ public class TestyUtilitySteps extends TestBase {
         field.setValue(value);
     }
 
-    @And("^text field with label \"([^\"]*)\" should have value \"([^\"]*)\"$")
+    @When("^I type \"([^\"]*)\" into \"([^\"]*)\" field$")
+    public void typeIntoField(String value, String label) throws Throwable {
+        SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
+        field.setValue(value);
+    }
+
+    @Then("^text field with label \"([^\"]*)\" should have value \"([^\"]*)\"$")
     public void text_field_with_label_should_have_value(String label, String value) throws Throwable {
         SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
         assertThat(field.getValue(), is(value));
