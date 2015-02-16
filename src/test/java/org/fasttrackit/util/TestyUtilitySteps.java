@@ -30,23 +30,17 @@ public class TestyUtilitySteps extends TestBase {
         button.assertClick();
     }
 
-    @Then("^I should see web element with text \"([^\"]*)\"$")
+    @Then("^I should see an element with text \"([^\"]*)\"$")
     public void assertHaveElementWithText(String text) throws Throwable {
         WebLocator element = new WebLocator().setText(text);
         assertThatElementIsReady(element);
     }
 
-    @Then("^I should see following web elements with texts \"(.*)\"$")
+    @Then("^I should see following elements with texts \"(.*)\"$")
     public void assertHaveElementsWithText(List<String> texts) throws Throwable {
         for (String text : texts) {
             assertHaveElementWithText(text);
         }
-    }
-
-    @When("^I type \"([^\"]*)\" into text field with label \"([^\"]*)\"$")
-    public void I_type_into_text_field_with_label(String value, String label) throws Throwable {
-        SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
-        field.setValue(value);
     }
 
     @When("^I type \"([^\"]*)\" into \"([^\"]*)\" field$")

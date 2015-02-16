@@ -8,17 +8,17 @@ Feature: Customer I can login to web site
     And I click on fake Password field
     And I type "badpass" into "Password" field
     And I click on input button with text "Login"
-    Then I should see web element with text " A user could not be found with this email address."
+    Then I should see an element with text " A user could not be found with this email address."
   
   Scenario: failed login using username
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
     When I login using "wronguser"/"pass"
-    Then I should see following web elements with texts ": Invalid username. ,Lost your password"
+    Then I should see following elements with texts ": Invalid username. ,Lost your password"
     
   Scenario: Password is required
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
     When I login using "wronguser"/""
-    Then I should see following web elements with texts " Password is required."
+    Then I should see following elements with texts " Password is required."
 
   Scenario: Fail login
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
@@ -34,8 +34,8 @@ Feature: Customer I can login to web site
     And I click on fake Password field
     And I type "library" into "Password" field
     And I click on input button with text "Login"
-    Then I should see web element with text "Log Out"
-    And I should see following web elements with texts "Recent Orders, My Addresses, Billing Address, Shipping Address"
+    Then I should see an element with text "Log Out"
+    And I should see following elements with texts "Recent Orders, My Addresses, Billing Address, Shipping Address"
     And I click on link with text "Log Out"
     
   Scenario: Successfully login
