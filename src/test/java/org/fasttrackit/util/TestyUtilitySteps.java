@@ -49,7 +49,7 @@ public class TestyUtilitySteps extends TestBase {
         field.setValue(value);
     }
 
-    @Then("^text field with label \"([^\"]*)\" should have value \"([^\"]*)\"$")
+    @Then("^field \"([^\"]*)\" should have value \"([^\"]*)\"$")
     public void text_field_with_label_should_have_value(String label, String value) throws Throwable {
         SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
         assertThat(field.getValue(), is(value));
