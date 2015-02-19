@@ -10,13 +10,13 @@ public class AccountSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountSteps.class);
 
     @Given("^I click on edit Billing Address$")
-    public void I_click_on_edit_Billing_Address() throws Throwable {
+    public void I_click_on_edit_Billing_Address() {
         WebLink edit = new WebLink().setText("Edit").setLabel("Billing Address").setLabelTag("*");
         edit.assertClick();
     }
 
     @Given("^I click on edit Shipping Address$")
-    public void I_click_on_edit_Shipping_Address() throws Throwable {
+    public void I_click_on_edit_Shipping_Address() {
         WebLink edit = new WebLink().setText("Edit").setLabel("Shipping Address").setLabelTag("*");
         edit.assertClick();
     }

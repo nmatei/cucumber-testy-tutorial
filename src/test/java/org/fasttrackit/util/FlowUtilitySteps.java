@@ -26,18 +26,18 @@ public class FlowUtilitySteps extends TestBase {
     }
 
     @When("^I open url \"([^\"]*)\"$")
-    public void I_open_LC_path(String url) throws Throwable {
+    public void I_open_LC_path(String url) {
         AppUtils.openUrl(url);
     }
 
     @Given("^I set browser size to (\\d+), (\\d+)$")
-    public void setBrowserSize(int width, int height) throws Throwable {
+    public void setBrowserSize(int width, int height) {
         LOGGER.info("I set browser size to ({}, {})", width, height);
         WebDriverConfig.getDriver().manage().window().setSize(new Dimension(width, height));
     }
 
     @Given("^I maximize browser$")
-    public void maximizeBrowser() throws Throwable {
+    public void maximizeBrowser() {
         WebDriverConfig.getDriver().manage().window().maximize();
     }
 }

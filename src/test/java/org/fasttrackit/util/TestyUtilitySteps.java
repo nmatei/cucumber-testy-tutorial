@@ -19,38 +19,38 @@ public class TestyUtilitySteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestyUtilitySteps.class);
 
     @When("^I click on link with text \"([^\"]*)\"$")
-    public void I_click_on_link_with_text(String text) throws Throwable {
+    public void I_click_on_link_with_text(String text) {
         WebLink link = new WebLink().setText(text);
         link.assertClick();
     }
     
     @When("^I click on input button with text \"([^\"]*)\"$")
-    public void I_click_on_input_button_with_text(String text) throws Throwable {
+    public void I_click_on_input_button_with_text(String text) {
         InputButton button = new InputButton().setText(text);
         button.assertClick();
     }
 
     @Then("^I should see an element with text \"([^\"]*)\"$")
-    public void assertHaveElementWithText(String text) throws Throwable {
+    public void assertHaveElementWithText(String text) {
         WebLocator element = new WebLocator().setText(text);
         assertThatElementIsReady(element);
     }
 
     @Then("^I should see following elements with texts \"(.*)\"$")
-    public void assertHaveElementsWithText(List<String> texts) throws Throwable {
+    public void assertHaveElementsWithText(List<String> texts) {
         for (String text : texts) {
             assertHaveElementWithText(text);
         }
     }
 
     @When("^I type \"([^\"]*)\" into \"([^\"]*)\" field$")
-    public void typeIntoField(String value, String label) throws Throwable {
+    public void typeIntoField(String value, String label) {
         SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
         field.setValue(value);
     }
 
     @Then("^field \"([^\"]*)\" should have value \"([^\"]*)\"$")
-    public void text_field_with_label_should_have_value(String label, String value) throws Throwable {
+    public void text_field_with_label_should_have_value(String label, String value) {
         SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
         assertThat(field.getValue(), is(value));
     }

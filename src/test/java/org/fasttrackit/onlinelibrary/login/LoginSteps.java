@@ -17,12 +17,12 @@ public class LoginSteps extends TestBase {
     private LoginView loginView = new LoginView();
 
     @When("^I click on Login button from top navigation menu$")
-    public void I_click_on_Login_button_from_top_navigation_menu() throws Throwable {
+    public void I_click_on_Login_button_from_top_navigation_menu() {
         topMenuNavigation.loginButton.assertClick();
     }
     
     @When("^I login using \"([^\"]*)\"/\"([^\"]*)\"$")
-    public void I_login_using_(String user, String password) throws Throwable {
+    public void I_login_using_(String user, String password) {
         loginView.login(user, password);
     }
 
