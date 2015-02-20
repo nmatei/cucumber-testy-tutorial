@@ -10,7 +10,6 @@ Feature: First automated test using Testy and Cucumber
     Given I open url "https://fuel-3d.com/"
     When I mouse over on element with text "Product"
     And I click on link with text "Compare"
-    Then I should be on url "https://fuel-3d.com/compare/"
-    And I should see an element with text "Sweeping laser line:"
-    And I wait 10 seconds
+    Then I should see an element with text "Sweeping laser line:"
+    And I should be on url "https://fuel-3d.com/compare/"
     
