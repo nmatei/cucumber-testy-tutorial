@@ -1,11 +1,6 @@
 package org.fasttrackit.util;
 
-import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebDriverConfig;
-import com.sdl.selenium.web.WebLocator;
-import com.sdl.selenium.web.button.InputButton;
-import com.sdl.selenium.web.form.SimpleTextField;
-import com.sdl.selenium.web.link.WebLink;
 import com.sdl.selenium.web.utils.Utils;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,7 +9,8 @@ import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FlowUtilitySteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlowUtilitySteps.class);
@@ -39,5 +35,10 @@ public class FlowUtilitySteps extends TestBase {
     @Given("^I maximize browser$")
     public void maximizeBrowser() {
         WebDriverConfig.getDriver().manage().window().maximize();
+    }
+
+    @Then("^I should be on url \"([^\"]*)\"$")
+    public void I_should_be_on_url(String url) {
+        assertThat(WebDriverConfig.getDriver().getCurrentUrl(), is(url));
     }
 }

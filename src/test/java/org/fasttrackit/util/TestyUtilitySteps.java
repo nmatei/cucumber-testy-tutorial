@@ -5,6 +5,7 @@ import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
 import com.sdl.selenium.web.form.SimpleTextField;
 import com.sdl.selenium.web.link.WebLink;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.slf4j.Logger;
@@ -53,5 +54,11 @@ public class TestyUtilitySteps extends TestBase {
     public void text_field_with_label_should_have_value(String label, String value) {
         SimpleTextField field = new SimpleTextField().setLabel(label, SearchType.DEEP_CHILD_NODE_OR_SELF);
         assertThat(field.getValue(), is(value));
+    }
+
+    @When("^I mouse over on element with text \"([^\"]*)\"$")
+    public void I_mouse_over_on_element_with_text(String text) {
+        WebLocator element = new WebLocator().setText(text);
+        element.mouseOver();
     }
 }
