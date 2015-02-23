@@ -5,7 +5,6 @@ import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
 import com.sdl.selenium.web.form.SimpleTextField;
 import com.sdl.selenium.web.link.WebLink;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.slf4j.Logger;
