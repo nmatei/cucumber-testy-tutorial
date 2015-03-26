@@ -5,6 +5,7 @@ import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
 import com.sdl.selenium.web.form.SimpleTextField;
 import com.sdl.selenium.web.link.WebLink;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.slf4j.Logger;
@@ -22,6 +23,12 @@ public class TestyUtilitySteps extends TestBase {
     public void I_click_on_link_with_text(String text) {
         WebLink link = new WebLink().setText(text);
         link.assertClick();
+    }
+
+    @When("^I click on element with text \"([^\"]*)\"$")
+    public void I_click_on_element_with_text(String text) throws Throwable {
+        WebLocator element = new WebLocator().setText(text);
+        element.assertClick();
     }
     
     @When("^I click on input button with text \"([^\"]*)\"$")
