@@ -3,8 +3,8 @@ package org.fasttrackit.examples;
 import com.sdl.selenium.web.WebLocator;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fasttrackit.util.TestBase;
 import org.fasttrackit.example.views.MenuLinks;
+import org.fasttrackit.util.TestBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

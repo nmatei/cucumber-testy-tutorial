@@ -22,7 +22,7 @@ public class LoginSteps extends TestBase {
     }
     
     @When("^I login using \"([^\"]*)\"/\"([^\"]*)\"$")
-    public void I_login_using_(String user, String password) {
+    public void I_login_using(String user, String password) {
         loginView.login(user, password);
     }
 

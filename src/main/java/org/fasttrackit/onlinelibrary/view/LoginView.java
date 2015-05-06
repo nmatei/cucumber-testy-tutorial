@@ -14,18 +14,18 @@ public class LoginView extends WebLocator {
         setClasses("login");
     }
 
-    public SimpleTextField userNameField1 = new SimpleTextField(this).setLabel("Username or email address", SearchType.DEEP_CHILD_NODE_OR_SELF)
+    private SimpleTextField userNameField1 = new SimpleTextField(this).setLabel("Username or email address", SearchType.DEEP_CHILD_NODE_OR_SELF)
             .setLabelPosition("//following-sibling::");
-    public SimpleTextField userNameField = new SimpleTextField(this).setName("username");
-    public SimpleTextField passwordField = new SimpleTextField(this).setName("password");
+    private SimpleTextField userNameField = new SimpleTextField(this).setName("username");
+    private SimpleTextField passwordField = new SimpleTextField(this).setName("password");
 
     public SimpleTextField fakePasswordField = new SimpleTextField(this).setLabel("Password", SearchType.CHILD_NODE)
             .setLabelPosition("//following-sibling::").setPosition(2);
 
-    public InputButton loginButton = new InputButton(this, "Login");
+    private InputButton loginButton = new InputButton(this, "Login");
 
-    public WebLocator invalidUserErrorElement = new WebLocator().setText("Invalid username");
-    public WebLocator userNotFoundErrorElement = new WebLocator().setText("A user could not be found with this email address.");
+    private WebLocator invalidUserErrorElement = new WebLocator().setText("Invalid username");
+    private WebLocator userNotFoundErrorElement = new WebLocator().setText("A user could not be found with this email address.");
 
     public void login(String user, String pass) {
         userNameField.setValue(user);
