@@ -3,7 +3,7 @@ package org.fasttrackit.onlinelibrary.view;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
-import com.sdl.selenium.web.form.SimpleTextField;
+import com.sdl.selenium.web.form.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +14,12 @@ public class LoginView extends WebLocator {
         setClasses("login");
     }
 
-    private SimpleTextField userNameField1 = new SimpleTextField(this).setLabel("Username or email address", SearchType.DEEP_CHILD_NODE_OR_SELF)
+    private TextField userNameField1 = new TextField(this).setLabel("Username or email address", SearchType.DEEP_CHILD_NODE_OR_SELF)
             .setLabelPosition("//following-sibling::");
-    private SimpleTextField userNameField = new SimpleTextField(this).setName("username");
-    private SimpleTextField passwordField = new SimpleTextField(this).setName("password");
+    private TextField userNameField = new TextField(this).setName("username");
+    private TextField passwordField = new TextField(this).setName("password");
 
-    public SimpleTextField fakePasswordField = new SimpleTextField(this).setLabel("Password", SearchType.CHILD_NODE)
+    public TextField fakePasswordField = new TextField(this).setLabel("Password", SearchType.CHILD_NODE)
             .setLabelPosition("//following-sibling::").setPosition(2);
 
     private InputButton loginButton = new InputButton(this, "Login");
