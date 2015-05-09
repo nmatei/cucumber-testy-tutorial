@@ -68,7 +68,6 @@ public class LoginSteps extends TestBaseNative {
         assertThat(message, is("Invalid user or password!"));
     }
 
-
     private void login(String emailValue, String passValue) throws Throwable {
         System.out.println("set email");
         WebElement email = driver.findElement(By.id("email"));
