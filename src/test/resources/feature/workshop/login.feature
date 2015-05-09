@@ -1,11 +1,7 @@
 @screen
-Feature: As a user I can login into app
+Feature:As a user I can login into app
 
-#  Scenario: I successfully login with valid user and pass
-#    Given I open login page
-#    When I enter email "eu@fast.com"
-
-  Scenario: As a user I can login
+  Scenario: I can login
     Given I open app
     When login into the app
     Then I'm logged in
