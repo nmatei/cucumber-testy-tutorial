@@ -1,6 +1,5 @@
 package org.fasttrackit.workshop.login;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -10,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.ByteArrayOutputStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -30,8 +27,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I enter email \"([^\"]*)\"$")
     public void I_enter_email(String email) {
-        WebElement element = driver.findElement(By.id("email"));
-        element.sendKeys(email);
+        enterEmail(email);
     }
 
 
@@ -47,9 +43,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^I'm logged in$")
     public void i_m_logged_in() throws Throwable {
-        WebElement logoutButton = driver.findElement(By.xpath("//nav//a[normalize-space(text())='Logout']"));
-
-        logoutButton.click();
+        doLogout();
     }
 
     @When("^I insert invalid credentials$")
@@ -59,19 +53,19 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^I won't be logged in$")
     public void i_won_t_be_logged_in() throws Throwable {
-        //WebElement errorMsg = driver.findElement(By.xpath("//*[normalize-space(text())='Invalid user or password!']"));
-
-        WebElement errorMsg = driver.findElement(By.className("error-msg"));
-        String message = errorMsg.getText();
+        String message = getErrorMessage();
 
         System.out.println("error: " + message);
         assertThat(message, is("Invalid user or password!"));
     }
 
-    private void login(String emailValue, String passValue) throws Throwable {
-        System.out.println("set email");
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys(emailValue);
+    public String getErrorMessage() {
+        WebElement errorMsg = driver.findElement(By.className("error-msg"));
+        return errorMsg.getText();
+    }
+
+    public void login(String email, String passValue) throws Throwable {
+        enterEmail(email);
 
         System.out.println("set pass");
         WebElement pass = driver.findElement(By.xpath("//form/div[2]//input"));
@@ -80,5 +74,16 @@ public class LoginSteps extends TestBaseNative {
         System.out.println("click on login");
         WebElement loginButton = driver.findElement(By.tagName("button"));
         loginButton.click();
+    }
+
+    public void enterEmail(String email) {
+        System.out.println("set email" + email);
+        WebElement emailField = driver.findElement(By.id("email"));
+        emailField.sendKeys(email);
+    }
+
+    public void doLogout() {
+        WebElement logoutButton = driver.findElement(By.xpath("//nav//a[normalize-space(text())='Logout']"));
+        logoutButton.click();
     }
 }
