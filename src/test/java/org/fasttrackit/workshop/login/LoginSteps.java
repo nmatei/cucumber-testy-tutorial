@@ -30,9 +30,6 @@ public class LoginSteps extends TestBaseNative {
         driver.get("file:///C:/Cloud/Dropbox/Public/FastTrackIT/app-demo/login.html");
 
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-
-        // TODO remove (shortcut to driver)
-        LoginPage.driver = driver;
     }
 
     @When("^login into the app$")
