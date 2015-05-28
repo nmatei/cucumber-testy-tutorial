@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>simple-webapp-test</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/nmatei/cucumber-testy-tutorial</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
