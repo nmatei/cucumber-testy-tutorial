@@ -39,7 +39,7 @@ public class TestyUtilitySteps extends TestBase {
     @Then("^I should see an element with text \"([^\"]*)\"$")
     public void assertHaveElementWithText(String text) {
         WebLocator element = new WebLocator().setText(text);
-        assertThatElementIsReady(element);
+        element.assertReady();
     }
 
     @Then("^I should see following elements with texts \"(.*)\"$")
