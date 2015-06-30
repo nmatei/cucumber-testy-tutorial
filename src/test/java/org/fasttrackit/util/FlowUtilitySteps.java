@@ -1,6 +1,6 @@
 package org.fasttrackit.util;
 
-import com.sdl.selenium.web.WebDriverConfig;
+import com.sdl.selenium.utils.config.WebDriverConfig;
 import com.sdl.selenium.web.utils.Utils;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

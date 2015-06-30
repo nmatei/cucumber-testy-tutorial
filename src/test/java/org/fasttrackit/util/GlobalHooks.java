@@ -1,8 +1,6 @@
 package org.fasttrackit.util;
 
-import com.sdl.selenium.web.SearchType;
-import com.sdl.selenium.web.WebDriverConfig;
-import com.sdl.selenium.web.link.WebLink;
+import com.sdl.selenium.utils.config.WebDriverConfig;
 import com.sdl.selenium.web.utils.Utils;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
