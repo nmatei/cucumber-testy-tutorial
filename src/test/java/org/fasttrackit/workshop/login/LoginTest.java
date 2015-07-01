@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 "org.fasttrackit.workshop.login"
         },
         features = {
-                "src/test/resources/feature/workshop/"
+                "src/test/resources/feature/workshop/login-example.feature"
         }
 )
 @RunWith(Cucumber.class)
