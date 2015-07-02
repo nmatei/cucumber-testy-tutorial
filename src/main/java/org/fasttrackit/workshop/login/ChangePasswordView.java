@@ -4,6 +4,7 @@ import com.sdl.selenium.bootstrap.window.Window;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.Button;
 import com.sdl.selenium.web.form.TextField;
+import com.sdl.selenium.web.utils.Utils;
 
 public class ChangePasswordView {
     private Button preferencesButton = new Button().setText("Preferences");
@@ -30,6 +31,7 @@ public class ChangePasswordView {
     }
 
     public String getStatusMessage() {
+        Utils.sleep(200);
         return statusMsgElement.getHtmlText();
     }
 }

@@ -43,4 +43,15 @@ public class LoginSteps extends TestBase {
         System.out.println("error: " + message);
         assertThat(message, is("Invalid user or password!"));
     }
+
+    @When("^I login with \"([^\"]*)\"/\"([^\"]*)\"$")
+    public void I_can_login_with_(String email, String pass) throws Throwable {
+        loginView.login(email, pass);
+    }
+
+    @Then("^I get the error \"([^\"]*)\"$")
+    public void I_get_the_error(String error) throws Throwable {
+        String message = loginView.getErrorMessage();
+        assertThat(message, is(error));
+    }
 }
