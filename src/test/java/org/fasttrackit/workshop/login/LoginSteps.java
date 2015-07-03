@@ -1,5 +1,6 @@
 package org.fasttrackit.workshop.login;
 
+import com.sdl.selenium.web.utils.Utils;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -12,17 +13,14 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class LoginSteps extends TestBaseNative {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
     LoginPage loginPage;
 
-    @Given("^I open login page$")
-    public void I_open_login_page() {
-        driver.get("file:///D:/Testy/src/test/functional/login.html");
-
-        //loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
 
     @When("^I enter email \"([^\"]*)\"$")
     public void I_enter_email(String email) {
@@ -32,25 +30,30 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I access the login page$")
     public void I_access_the_login_page() throws Throwable {
-        System.out.println("the page is opened here");
+        driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
     }
 
     @And("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("eu@fast.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("eu.pass");
+
     }
 
     @When("^I click on the login button$")
     public void I_click_on_the_login_button() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement LoginButton = driver.findElement(By.id("loginButton"));
+        LoginButton.click();
     }
 
     @Then("^I check if the user is logged in$")
     public void I_check_if_the_user_is_logged_in() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement logout = driver.findElement(By.linkText("Logout"));
+        Boolean successLoggedIn = logout.isDisplayed();
+        assertThat(successLoggedIn, is(true));
     }
 
     @And("^I insert invalid credentials$")
@@ -72,13 +75,4 @@ public class LoginSteps extends TestBaseNative {
     }
 
 
-    @Then("^I send (\\d+) into search field$")
-    public void I_send_into_search_field(int arg1) throws Throwable {
-        System.out.println("5");
-    }
-
-    @Given("^I open url \"([^\"]*)\"$")
-    public void I_open_url(String url) throws Throwable {
-        driver.get(url);
-    }
 }
