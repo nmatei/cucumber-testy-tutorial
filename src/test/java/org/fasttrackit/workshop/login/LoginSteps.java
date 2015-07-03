@@ -22,7 +22,7 @@ public class LoginSteps extends TestBaseNative {
     LoginPage loginPage;
 
     @Given("^I access the login page$")
-    public void I_access_the_login_page() throws Throwable {
+    public void I_access_the_login_page() {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
     }
 
@@ -32,13 +32,13 @@ public class LoginSteps extends TestBaseNative {
     }
 
     @When("^I click login button$")
-    public void I_click_login_button() throws Throwable {
+    public void I_click_login_button() {
         WebElement loginButton = driver.findElement(By.id("loginButton"));
         loginButton.click();
     }
 
     @Then("^I check if user was logged in$")
-    public void I_check_if_user_was_logged_in() throws Throwable {
+    public void I_check_if_user_was_logged_in() {
         boolean successLoggedIn = false;
         try {
             WebElement logout = driver.findElement(By.linkText("Logout"));
@@ -75,5 +75,13 @@ public class LoginSteps extends TestBaseNative {
     @Then("^I expect \"([^\"]*)\" error message$")
     public void I_expect_error_message(String expectedMessage) {
         errorMessageShouldBePresent(expectedMessage);
+    }
+
+    @Given("^I successfully login$")
+    public void I_successfully_login() {
+        I_access_the_login_page();
+        I_insert_valid_credentials();
+        I_click_login_button();
+        I_check_if_user_was_logged_in();
     }
 }
