@@ -28,11 +28,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("eu@fast.com");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("eu.pass");
+        I_enter_credentials("eu@fast.com", "eu.pass");
     }
 
     @When("^I click login button$")
@@ -53,17 +49,31 @@ public class LoginSteps extends TestBaseNative {
     }
 
     @Given("^I insert invalid credentials$")
-    public void I_insert_invalid_credentials() throws Throwable {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("aa@fast.com");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("aa.pass");
+    public void I_insert_invalid_credentials() {
+        I_enter_credentials("aa@fast.com", "aa.pass");
     }
 
     @Then("^I expect invalid credential message$")
-    public void I_Expect_invalid_credential_message() throws Throwable {
+    public void I_Expect_invalid_credential_message() {
+        errorMessageShouldBePresent("Invalid user or password!");
+    }
+
+    private void errorMessageShouldBePresent(String expectedMessage) {
         WebElement error = driver.findElement(By.className("error-msg"));
-        assertThat(error.getText(), is("Invalid user or password!"));
+        assertThat(error.getText(), is(expectedMessage));
+    }
+
+    @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
+    public void I_enter_credentials(String emailValue, String passValue) {
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys(emailValue);
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys(passValue);
+    }
+
+    @Then("^I expect \"([^\"]*)\" error message$")
+    public void I_expect_error_message(String expectedMessage) {
+        errorMessageShouldBePresent(expectedMessage);
     }
 }
