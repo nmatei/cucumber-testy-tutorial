@@ -56,16 +56,21 @@ public class LoginSteps extends TestBaseNative {
         assertThat(successLoggedIn, is(true));
     }
 
-    @And("^I insert invalid credentials$")
+    @Given("^I insert invalid credentials$")
     public void I_insert_invalid_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("eu1@fast.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("eu.pass");
+
     }
 
     @Then("^I check if the invalid credentials error message is displayed$")
     public void I_check_if_the_invalid_credentials_error_message_is_displayed() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement error = driver.findElement(By.className("error-msg"));
+        assertThat(error.getText(), is("Invalid user or password!"));
+
     }
 
     @Then("^I check if the invalid credentials error message is$")
