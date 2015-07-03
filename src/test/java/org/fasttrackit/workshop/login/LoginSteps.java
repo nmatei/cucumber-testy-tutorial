@@ -26,7 +26,7 @@ public class LoginSteps extends TestBaseNative {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
     }
 
-    @And("^I insert valid credentials$")
+    @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() {
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys("eu@fast.com");
@@ -45,32 +45,25 @@ public class LoginSteps extends TestBaseNative {
     public void I_check_if_user_was_logged_in() throws Throwable {
         boolean successLoggedIn = false;
         try {
-            WebElement logout = driver.findElement(By.linkText("Signout"));
+            WebElement logout = driver.findElement(By.linkText("Logout"));
             successLoggedIn = logout.isDisplayed();
         } catch (Exception e) {}
 
         assertThat("Could not find logout button", successLoggedIn, is(true));
     }
 
-    @And("^I insert invalid credentials$")
+    @Given("^I insert invalid credentials$")
     public void I_insert_invalid_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("aa@fast.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("aa.pass");
     }
 
-    @Then("^I Expect invalid credential message$")
+    @Then("^I expect invalid credential message$")
     public void I_Expect_invalid_credential_message() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
-
-    @Given("^I open this url \"([^\"]*)\"$")
-    public void I_open_this_url(String url) throws Throwable {
-        driver.get(url);
-    }
-
-    @Then("^I send (\\d+) into search field$")
-    public void I_send_into_search_field(int arg1) throws Throwable {
-        System.out.println("numarul este: " + arg1);
+        WebElement error = driver.findElement(By.className("error-msg"));
+        assertThat(error.getText(), is("Invalid user or password!"));
     }
 }

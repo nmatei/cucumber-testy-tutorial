@@ -10,5 +10,5 @@ Feature: Login
     Given I access the login page
     And I insert invalid credentials
     When I click login button
-    Then I Expect invalid credential message
+    Then I expect invalid credential message
 
