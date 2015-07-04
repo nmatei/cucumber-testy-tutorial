@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LoginSteps extends TestBaseNative {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
-    LoginPage loginPage;
+    LoginPage loginPage = new LoginPage();
 
     @Given("^I access the login page$")
     public void I_access_the_login_page() {
@@ -33,8 +33,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I click login button$")
     public void I_click_login_button() {
-        WebElement loginButton = driver.findElement(By.id("loginButton"));
-        loginButton.click();
+        loginPage.clickOnLoginButton(driver);
     }
 
     @Then("^I check if user was logged in$")
