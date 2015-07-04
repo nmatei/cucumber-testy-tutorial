@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.util.TestBase;
+import org.fasttrackit.workshop.Menu.MainMenuView;
 import org.fasttrackit.workshop.Preferences.PreferencesView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class PreferencesSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(PreferencesSteps.class);
     public static final String VALID_EMAIL = "eu@fast.com";
-    public static final String NEW_PASSWORD = "eu.p";
+    public static String NEW_PASSWORD = "eu.p";
     public static String VALID_PASSWORD = "eu.pass";
 
     private PreferencesView preferencesWindow = new PreferencesView();
@@ -40,27 +41,29 @@ public class PreferencesSteps extends TestBase {
 
     @And("^I click on Save button$")
     public void I_click_on_Save_button() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        preferencesWindow.save();
     }
 
     @Then("^I should see \"([^\"]*)\" message$")
-    public void I_should_see_message(String arg1) throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
-
-    @And("^I close Preference window$")
-    public void I_close_Preference_window() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+    public void I_should_see_message(String message) throws Throwable {
+        preferencesWindow.isMessageDisplayed(message);
+        PreferencesSteps.VALID_PASSWORD = NEW_PASSWORD;
     }
 
     @And("^I can re-login with new credentials$")
     public void I_can_re_login_with_new_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+       
     }
 
+
+    @And("^I logged out$")
+    public void I_logged_out() throws Throwable {
+        MainMenuView.logout.click();
+    }
+
+    @And("^I close Preferences window$")
+    public void I_close_Preferences_window() throws Throwable {
+       preferencesWindow.close();
+    }
 
 }
