@@ -15,4 +15,8 @@ public class LoginPage {
     public void enterEmail(String email) {
         emailEl.sendKeys(email);
     }
+
+    public void clickOnLoginButton() {
+
+    }
 }
