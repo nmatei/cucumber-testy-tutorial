@@ -26,6 +26,9 @@ public class LoginPage {
     @FindBy(how = How.ID, using = "error-msg")
     private WebElement error;
 
+    @FindBy (how = How.CLASS_NAME, using = "btn btn-default navbar-btn")
+    private WebElement logout;
+
     public void enterEmail(String email) {
         emailEl.sendKeys(email);
     }
