@@ -13,84 +13,75 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
 public class LoginSteps extends TestBaseNative {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
     LoginPage loginPage;
 
-
-    @When("^I enter email \"([^\"]*)\"$")
-    public void I_enter_emaiql(String email) {
-        WebElement element = driver.findElement(By.id("email"));
-        element.sendKeys(email);
-    }
-
     @Given("^I access the login page$")
-    public void I_access_the_login_page() throws Throwable {
+    public void I_access_the_login_page() {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
     }
 
-    @And("^I insert valid credentials$")
-    public void I_insert_valid_credentials() throws Throwable {
-        I_insert_invalid_credentials("eu@fast.com", "eu.pass");
+    @Given("^I insert valid credentials$")
+    public void I_insert_valid_credentials() {
+        I_enter_credentials("eu@fast.com", "eu.pass");
     }
 
-    @When("^I click on the login button$")
-    public void I_click_on_the_login_button() throws Throwable {
-        WebElement LoginButton = driver.findElement(By.id("loginButton"));
-        LoginButton.click();
+    @When("^I click login button$")
+    public void I_click_login_button() {
+        WebElement loginButton = driver.findElement(By.id("loginButton"));
+        loginButton.click();
     }
 
-    @Then("^I check if the user is logged in$")
-    public void I_check_if_the_user_is_logged_in() throws Throwable {
-        WebElement logout = driver.findElement(By.linkText("Logout"));
-        Boolean successLoggedIn = logout.isDisplayed();
-        assertThat(successLoggedIn, is(true));
+    @Then("^I check if user was logged in$")
+    public void I_check_if_user_was_logged_in() {
+        boolean successLoggedIn = false;
+        try {
+            WebElement logout = driver.findElement(By.linkText("Logout"));
+            successLoggedIn = logout.isDisplayed();
+        } catch (Exception e) {}
+
+        assertThat("Could not find logout button", successLoggedIn, is(true));
     }
 
     @Given("^I insert invalid credentials$")
-    public void I_insert_invalid_credentials() throws Throwable {
-        I_insert_invalid_credentials("eu1@fast.com", "eu.pass");
-
+    public void I_insert_invalid_credentials() {
+        I_enter_credentials("aa@fast.com", "aa.pass");
     }
 
-    @Then("^I check if the invalid credentials error message is displayed$")
-    public void I_check_if_the_invalid_credentials_error_message_is_displayed() throws Throwable {
-        errorMsg("Invalid user or password!");
-
+    @Then("^I expect invalid credential message$")
+    public void I_Expect_invalid_credential_message() {
+        errorMessageShouldBePresent("Invalid user or password!");
     }
 
-    private void errorMsg(String msg) {
+    private void errorMessageShouldBePresent(String expectedMessage) {
         WebElement error = driver.findElement(By.className("error-msg"));
-        assertThat(error.getText(), is(msg));
-    }
-
-    @Then("^I check if the invalid credentials error message is$")
-    public void I_check_if_the_invalid_credentials_error_message_is() throws Throwable {
-        errorMsg("Invalid user or password!");
-    }
-
-
-    @When("^I enter \"([^\"]*)\" email$")
-    public void I_enter_email(String arg1) throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
-
-    @Then("^I expect \"([^\"]*)\" message$")
-    public void I_expect_message(String msg) throws Throwable {
-        errorMsg(msg);
+        assertThat(error.getText(), is(expectedMessage));
     }
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
-    public void I_insert_invalid_credentials(String emailValue, String passVslue){
-            WebElement email = driver.findElement(By.id("email"));
-            email.sendKeys(emailValue);
+    public void I_enter_credentials(String emailValue, String passValue) {
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys(emailValue);
 
-            WebElement password = driver.findElement(By.id("password"));
-            password.sendKeys(passVslue);
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys(passValue);
+    }
+
+    @Then("^I expect \"([^\"]*)\" error message$")
+    public void I_expect_error_message(String expectedMessage) {
+        errorMessageShouldBePresent(expectedMessage);
+    }
+
+    @Given("^I successfully login$")
+    public void I_successfully_login() {
+        I_access_the_login_page();
+        I_insert_valid_credentials();
+        I_click_login_button();
+        I_check_if_user_was_logged_in();
     }
 }
