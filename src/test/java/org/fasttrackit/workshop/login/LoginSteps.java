@@ -1,8 +1,5 @@
 package org.fasttrackit.workshop.login;
 
-import com.sdl.selenium.web.utils.Utils;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -63,12 +60,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^I expect invalid credential message$")
     public void I_Expect_invalid_credential_message() {
-        errorMessageShouldBePresent("Invalid user or password!");
-    }
-
-    private void errorMessageShouldBePresent(String expectedMessage) {
-        WebElement error = driver.findElement(By.className("error-msg"));
-        assertThat(error.getText(), is(expectedMessage));
+        loginPage.errorMessageShouldBePresent("Invalid user or password!");
     }
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
@@ -78,7 +70,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^I expect \"([^\"]*)\" error message$")
     public void I_expect_error_message(String expectedMessage) {
-        errorMessageShouldBePresent(expectedMessage);
+        loginPage.errorMessageShouldBePresent(expectedMessage);
     }
 
     @Given("^I successfully login$")
