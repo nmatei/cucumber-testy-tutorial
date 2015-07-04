@@ -4,6 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.util.TestBase;
+import org.fasttrackit.workshop.menu.MainMenuView;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -37,13 +38,7 @@ public class LoginSteps extends TestBase {
 
     @Then("^I check if user was logged in$")
     public void I_check_if_user_was_logged_in() {
-        boolean successLoggedIn = false;
-        try {
-            WebElement logout = driver.findElement(By.linkText("Logout"));
-            successLoggedIn = logout.isDisplayed();
-        } catch (Exception e) {}
-
-        assertThat("Could not find logout button", successLoggedIn, is(true));
+        MainMenuView.logout.assertExists();
     }
 
     @Given("^I insert invalid credentials$")
