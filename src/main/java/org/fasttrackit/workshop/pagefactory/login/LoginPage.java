@@ -25,6 +25,9 @@ public class LoginPage {
     @FindBy(how = How.CLASS_NAME, using = "error-msg")
     private WebElement error;
 
+    @FindBy(how = How.XPATH, using = "//label[text()='Current Password']//following-sibling::*//input")
+    private WebElement currentPass;
+
     public void clickOnLoginButton() {
         loginButton.click();
     }
