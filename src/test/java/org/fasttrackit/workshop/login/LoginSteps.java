@@ -73,11 +73,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_enter_credentials(String emailValue, String passValue) {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys(emailValue);
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys(passValue);
+        loginPage.enterCredentials(emailValue, passValue);
     }
 
     @Then("^I expect \"([^\"]*)\" error message$")
