@@ -30,7 +30,9 @@ public class LoginPage {
     }
 
     public void enterCredentials(String emailValue, String passValue) {
+        System.out.println("enter email: " + emailValue);
         email.sendKeys(emailValue);
+        System.out.println("enter pass: " + passValue);
         password.sendKeys(passValue);
     }
 
