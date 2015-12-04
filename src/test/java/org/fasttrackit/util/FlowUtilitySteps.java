@@ -41,4 +41,9 @@ public class FlowUtilitySteps extends TestBase {
     public void I_should_be_on_url(String url) {
         assertThat(WebDriverConfig.getDriver().getCurrentUrl(), is(url));
     }
+
+    @When("^I switch browser to last tab$")
+    public void I_switch_last_browser_tab() throws Throwable {
+        WebDriverConfig.switchToLastTab();
+    }
 }

@@ -1,5 +1,6 @@
 package org.fasttrackit.onlinelibrary.view;
 
+import com.sdl.selenium.WebLocatorUtils;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.button.InputButton;
@@ -35,6 +36,6 @@ public class LoginView extends WebLocator {
     }
 
     public static void main(String[] args) {
-        LOGGER.debug(new LoginView().userNameField1.getPath());
+        WebLocatorUtils.getXPathScript(new LoginView());
     }
 }
