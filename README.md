@@ -1,7 +1,7 @@
 Cucumber Testy Tutorial
 =======================
 
-Integration Tests with [Testy](https://github.com/SDLLanguageTechnologies/Testy) and [Cucumber](https://cucumber.io/)
+Integration Tests with [Testy](https://github.com/sdl/Testy) and [Cucumber](https://cucumber.io/)
 
 Running the Tests:
 ------------------
