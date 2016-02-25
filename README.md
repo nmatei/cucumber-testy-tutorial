@@ -1,10 +1,8 @@
-Cucumber Testy Tutorial
-=======================
+# Cucumber Testy Tutorial
 
 Integration Tests with [Testy](https://github.com/sdl/Testy) and [Cucumber](https://cucumber.io/)
 
-Running the Tests:
-------------------
+## Running the Tests:
 
     mvn clean test -DfailIfNoTests=false
 	
