@@ -13,11 +13,11 @@ import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class FistLoginTest extends TestBase {
+public class FirstLoginTest extends TestBase {
 
     private LoginPage loginPage;
 
-    public FistLoginTest() {
+    public FirstLoginTest() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
 
@@ -93,7 +93,7 @@ public class FistLoginTest extends TestBase {
 
     private void openLoginPage() {
         System.out.println("open login page");
-//        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
-        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/login.html");
+        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+//        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/login.html");
     }
 }
