@@ -21,10 +21,10 @@ public class ChangePasswordPage {
     @FindBy(how = How.CSS, using = "#preferences-win .status-msg")
     private WebElement statusElement;
 
-    public void changePassword(String password, String newPassword) {
+    public void changePassword(String password, String newPassword, String repeatPassword) {
         currentPassField.sendKeys(password);
         newPassField.sendKeys(newPassword);
-        repeatPassField.sendKeys("eu.pass2");
+        repeatPassField.sendKeys(repeatPassword);
         saveBtn.click();
     }
 

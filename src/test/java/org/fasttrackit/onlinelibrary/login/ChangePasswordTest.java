@@ -4,11 +4,7 @@ import org.fasttrackit.example.ChangePasswordPage;
 import org.fasttrackit.example.LoginPage;
 import org.fasttrackit.example.NavigationBarPage;
 import org.fasttrackit.util.TestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,7 +29,7 @@ public class ChangePasswordTest extends TestBase {
 
         navigationBarPage.openPreferencesWindow();
 
-        changePasswordPage.changePassword("eu.pass", "eu.pass2");
+        changePasswordPage.changePassword("eu.pass", "eu.pass2", "eu.pass2");
 
         String statusElementText = changePasswordPage.getStatusMessage();
 
