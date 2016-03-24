@@ -1,33 +1,25 @@
 package org.fasttrackit.onlinelibrary.login;
 
-import org.fasttrackit.example.LoginPage;
+import com.sdl.selenium.web.link.WebLink;
+import org.fasttrackit.example.LoginView;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class FirstLoginTest extends TestBase {
 
-    private LoginPage loginPage;
-
-    public FirstLoginTest() {
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
+    private LoginView loginPage = new LoginView();
 
     @Test
     public void whenEnterValidCredentialsImSuccessfullyLogin() {
         openLoginPage();
-        loginPage.doLogin("eu@fast.com", "eu.pass");
+        loginPage.doLogin("eu@fast.com", "eu.passx");
 
-        try {
-            WebElement logoutBtn = driver.findElement(By.linkText("Logout"));
-            logoutBtn.click();
-        } catch (NoSuchElementException exception) {
-            Assert.fail("Could not login. Logout button not found.");
-        }
+        WebLink logoutBtn = new WebLink().setText("Logout");
+        logoutBtn.assertClick();
     }
 
     @Test
