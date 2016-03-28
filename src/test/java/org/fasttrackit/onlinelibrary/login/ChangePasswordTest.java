@@ -1,6 +1,6 @@
 package org.fasttrackit.onlinelibrary.login;
 
-import org.fasttrackit.example.ChangePasswordPage;
+import org.fasttrackit.example.ChangePasswordView;
 import org.fasttrackit.example.LoginPage;
 import org.fasttrackit.example.NavigationBarPage;
 import org.fasttrackit.util.TestBase;
@@ -13,12 +13,11 @@ import static org.hamcrest.Matchers.is;
 public class ChangePasswordTest extends TestBase {
 
     private LoginPage loginPage;
-    private ChangePasswordPage changePasswordPage;
+    private ChangePasswordView changePasswordPage = new ChangePasswordView();
     private NavigationBarPage navigationBarPage;
 
     public ChangePasswordTest() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        changePasswordPage = PageFactory.initElements(driver, ChangePasswordPage.class);
         navigationBarPage = PageFactory.initElements(driver, NavigationBarPage.class);
     }
 
@@ -35,6 +34,7 @@ public class ChangePasswordTest extends TestBase {
 
         System.out.println(statusElementText);
         assertThat(statusElementText, is("Your password has been successfully changed."));
+        changePasswordPage.close();
     }
 
     private void openLoginPage() {

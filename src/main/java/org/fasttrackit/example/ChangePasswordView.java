@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class ChangePasswordView {
-    private WebLocator win = new WebLocator().setId("preferences-win").setClasses("in");
+    private WebLocator title = new WebLocator().setText("Change Password");
+    private WebLocator win = new WebLocator().setClasses("modal", "in").setChildNodes(title);
 
     private WebLocator currentPassField = new WebLocator(win).setName("password");
     private WebLocator newPassField = new WebLocator(win).setName("newPassword");
@@ -14,9 +15,11 @@ public class ChangePasswordView {
     private WebLocator saveBtn = new WebLocator(win).setText("Save");
     private WebLocator statusElement = new WebLocator(win).setClasses("status-msg");
 
+    private WebLocator closeBtn = new WebLocator(win).setText("Close");
+
     public static void main(String[] args) {
         ChangePasswordView view = new ChangePasswordView();
-        System.out.println(view.saveBtn.getSelector());
+        System.out.println(view.win.getSelector());
     }
 
     public void changePassword(String password, String newPassword, String repeatPassword) {
@@ -28,5 +31,9 @@ public class ChangePasswordView {
 
     public String getStatusMessage() {
         return statusElement.getHtmlText();
+    }
+
+    public void close() {
+        closeBtn.assertClick();
     }
 }
