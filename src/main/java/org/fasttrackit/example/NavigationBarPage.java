@@ -11,8 +11,5 @@ public class NavigationBarPage {
 
     public void openPreferencesWindow() {
         preferencesButton.click();
-
-        // because of window animation (slide down)
-        Utils.sleep(300);
     }
 }

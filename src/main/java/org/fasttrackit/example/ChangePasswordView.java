@@ -6,11 +6,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class ChangePasswordView {
-    private WebLocator currentPassField = new WebLocator().setElPath("//div[@id='preferences-win']//input[@name='password']");
-    private WebLocator newPassField = new WebLocator().setElPath("//input[@name='newPassword']");
-    private WebLocator repeatPassField = new WebLocator().setElPath("//input[@name='newPasswordRepeat']");
-    private WebLocator saveBtn = new WebLocator().setElCssSelector("#preferences-win button.btn-warning");
-    private WebLocator statusElement = new WebLocator().setElCssSelector("#preferences-win .status-msg");
+    private WebLocator win = new WebLocator().setId("preferences-win").setClasses("in");
+
+    private WebLocator currentPassField = new WebLocator(win).setName("password");
+    private WebLocator newPassField = new WebLocator(win).setName("newPassword");
+    private WebLocator repeatPassField = new WebLocator(win).setName("newPasswordRepeat");
+    private WebLocator saveBtn = new WebLocator(win).setText("Save");
+    private WebLocator statusElement = new WebLocator(win).setClasses("status-msg");
+
+    public static void main(String[] args) {
+        ChangePasswordView view = new ChangePasswordView();
+        System.out.println(view.saveBtn.getSelector());
+    }
 
     public void changePassword(String password, String newPassword, String repeatPassword) {
         currentPassField.sendKeys(password);
