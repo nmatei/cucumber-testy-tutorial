@@ -1,5 +1,6 @@
 package org.fasttrackit.elements;
 
+import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.forms.FirstFormView;
 import org.fasttrackit.util.TestBase;
 import org.testng.annotations.Test;
@@ -18,6 +19,9 @@ public class ElementsTest extends TestBase {
         FirstFormView form = new FirstFormView();
         form.enterCheckbox.assertClick();
         form.stopProcessCheckbox.assertClick();
+        Utils.sleep(3000);
+        form.stopProcessLabel.assertClick();
+        form.enterLabel.assertClick();
     }
 
     private void openPage() {
