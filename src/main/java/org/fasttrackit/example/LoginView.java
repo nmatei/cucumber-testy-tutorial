@@ -18,7 +18,7 @@ public class LoginView {
     public static void main(String[] args) {
         LoginView view = new LoginView();
 
-        System.out.println(view.errorMsg.getXPath());
+        System.out.println(view.emailField.getXPath());
     }
 
     public void enterEmail(String email) {
