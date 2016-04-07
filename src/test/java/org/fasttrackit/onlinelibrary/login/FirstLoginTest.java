@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class FirstLoginTest extends TestBase {
@@ -22,32 +23,22 @@ public class FirstLoginTest extends TestBase {
         logoutBtn.assertClick();
     }
 
-    @Test
-    public void whenEnterInvalidPasswordIGetErrorMessage() {
-        openLoginPage();
-        loginPage.doLogin("eu@fast.com", "wrong.pass");
-        loginPage.assertThatErrorIs("Invalid user or password!");
+    @DataProvider
+    public static Object[][] invalidLogin() {
+        return new Object[][] {
+                {"eu@fast.com", "wrong.pass",   "Invalid user or password!", true},
+                {"eu@fast.com", "",             "Please enter your password!", false},
+                {"",            "some.pass",    "Please enter your email!", false},
+                {"",            "",             "Please enter your email!", false}
+        };
     }
 
-    @Test
-    public void whenEnterOnlyEmailIGetErrorMessage() {
+    @Test(dataProvider = "invalidLogin")
+    public void invalidLoginTest(String email, String pass, String errorMsg, boolean hasCredentials) {
+        System.out.println("invalid login test:" + email + " - " + pass + " - " + errorMsg);
         openLoginPage();
-        loginPage.doLogin("eu@fast.com", "");
-        loginPage.assertThatErrorIs("Please enter your password!");
-    }
-
-    @Test
-    public void whenEnterOnlyPassowrdIGetErrorMessage() {
-        openLoginPage();
-        loginPage.doLogin("", "some.pass");
-        loginPage.assertThatErrorIs("Please enter your email!");
-    }
-
-    @Test
-    public void whenNoCretentialsIGetErrorMessage() {
-        openLoginPage();
-        loginPage.doLogin("", "");
-        loginPage.assertThatErrorIs("Please enter your email!");
+        loginPage.doLogin(email, pass);
+        loginPage.assertThatErrorIs(errorMsg);
     }
 
     private void openLoginPage() {
