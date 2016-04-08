@@ -1,8 +1,9 @@
 package org.fasttrackit.elements;
 
-import com.sdl.selenium.bootstrap.form.MultiSelect;
+import com.sdl.selenium.bootstrap.button.UploadFile;
+import com.sdl.selenium.bootstrap.form.Form;
 import com.sdl.selenium.bootstrap.form.SelectPicker;
-import com.sdl.selenium.web.WebLocator;
+import com.sdl.selenium.web.utils.PropertiesReader;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.example.DropDownList;
 import org.fasttrackit.example.MultiSelectDropDownList;
@@ -10,11 +11,6 @@ import org.fasttrackit.forms.FirstFormView;
 import org.fasttrackit.util.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Locale;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class ElementsTest extends TestBase {
 
@@ -57,8 +53,21 @@ public class ElementsTest extends TestBase {
         sourceDownList.multiSelect("Tomatoes", "Mushrooms");
     }
 
+    private Form form = new Form("Form Title");
+    private UploadFile uploadBtn = new UploadFile(form, "TPT Test:");
+    //private WebLocator inputUpload = new WebLocator(uploadBtn).setTag("input");
+
+    @Test
+    public void uploadTest() {
+        openPage();
+        String resourcesPath = PropertiesReader.RESOURCES_DIRECTORY_PATH;
+        System.out.println(resourcesPath);
+        //uploadBtn.click();
+        uploadBtn.upload(resourcesPath + "\\feature\\login\\login.feature");
+    }
+
     private void openPage() {
-//        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/bootstrap/index.html");
-        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/bootstrap/index.html");
+        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/bootstrap/index.html");
+//        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/bootstrap/index.html");
     }
 }

@@ -3,10 +3,6 @@ package org.fasttrackit.onlinelibrary.login;
 import com.sdl.selenium.web.link.WebLink;
 import org.fasttrackit.example.LoginView;
 import org.fasttrackit.util.TestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
