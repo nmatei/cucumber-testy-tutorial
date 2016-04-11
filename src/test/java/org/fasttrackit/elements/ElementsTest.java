@@ -3,16 +3,24 @@ package org.fasttrackit.elements;
 import com.sdl.selenium.bootstrap.button.UploadFile;
 import com.sdl.selenium.bootstrap.form.Form;
 import com.sdl.selenium.bootstrap.form.SelectPicker;
+import com.sdl.selenium.web.WebLocator;
+import com.sdl.selenium.web.form.TextField;
 import com.sdl.selenium.web.utils.PropertiesReader;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.example.DropDownList;
 import org.fasttrackit.example.MultiSelectDropDownList;
 import org.fasttrackit.forms.FirstFormView;
 import org.fasttrackit.util.TestBase;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ElementsTest extends TestBase {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ElementsTest.class);
 
     @Test
     public void checkboxTest() {
@@ -67,7 +75,23 @@ public class ElementsTest extends TestBase {
     }
 
     private void openPage() {
-        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/bootstrap/index.html");
-//        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/bootstrap/index.html");
+//        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/bootstrap/index.html");
+        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/bootstrap/index.html");
+    }
+
+    @Test
+    public void invalidGmailAddressTest() {
+        driver.get("https://gmail.com");
+        TextField emailField = new TextField().setPlaceholder("Enter your email");
+        emailField.setValue("invalid.email@examples.com");
+
+        emailField.sendKeys(Keys.ENTER);
+        //emailField.sendKeys(Keys.CONTROL, Keys.ARROW_LEFT, Keys.ARROW_LEFT);
+        //emailField.currentElement.sendKeys(Keys.CONTROL, Keys.ARROW_LEFT, Keys.ARROW_LEFT);
+
+        WebLocator errorElement = new WebLocator().setText("xSorry, Google doesn't recognize that email. ");
+        errorElement.assertExists();
+        //LOGGER.debug(error.getXPath());
+        //LOGGER.debug(error.getText());
     }
 }
