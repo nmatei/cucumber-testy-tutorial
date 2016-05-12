@@ -13,7 +13,7 @@ public class FirstLoginTest extends TestBase {
     @Test
     public void whenEnterValidCredentialsImSuccessfullyLogin() {
         openLoginPage();
-        loginPage.doLogin("eu@fast.com", "eu.passx");
+        loginPage.doLogin("eu@fast.com", "eu.pass");
 
         WebLink logoutBtn = new WebLink().setText("Logout");
         logoutBtn.assertClick();
@@ -39,7 +39,7 @@ public class FirstLoginTest extends TestBase {
 
     private void openLoginPage() {
         System.out.println("open login page");
-        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
-//        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/login.html");
+//        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/login.html");
     }
 }
