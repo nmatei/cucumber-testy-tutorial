@@ -13,12 +13,16 @@ import org.fasttrackit.example.SenchaExampleView;
 import org.fasttrackit.example.MultiSelectDropDownList;
 import org.fasttrackit.forms.FirstFormView;
 import org.fasttrackit.util.TestBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class ElementsTest extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElementsTest.class);
@@ -125,5 +129,35 @@ public class ElementsTest extends TestBase {
         WebLocator resizableEast = new WebLocator(basicPanel).setClasses("x-resizable-handle-east");
         resizableEast.mouseOver();
         (new Actions(WebDriverConfig.getDriver())).dragAndDropBy(resizableEast.currentElement, 300, 0).build().perform();
+    }
+
+    @Test
+    public void iterationThrouElements() {
+        driver.get("http://examples.sencha.com/extjs/6.0.2/examples/classic/view/data-view.html");
+
+        WebLocator dataview = new WebLocator().setId("dataview-example");
+        WebLocator wrap = new WebLocator(dataview).setClasses("thumb-wrap");
+        WebLocator img = new WebLocator(wrap).setTag("img");
+
+        //img.click();
+        for(WebElement image : img.findElements()) {
+            String title = image.getAttribute("title");
+            LOGGER.debug(title);
+        }
+
+        wrap.setPosition(3);
+        LOGGER.debug(img.getSelector().toString());
+        wrap.click();
+
+//        Utils.sleep(2000);
+//        List<WebElement> images = driver.findElements(By.cssSelector("#dataview-example img"));
+////        for (int i = 0; i < images.size(); i++) {
+////            String title = images.get(i).getAttribute("title");
+////            LOGGER.debug(title);
+////        }
+//        for(WebElement image : images) {
+//            String title = image.getAttribute("title");
+//            LOGGER.debug(title);
+//        }
     }
 }
