@@ -4,6 +4,7 @@ import com.sdl.selenium.bootstrap.button.UploadFile;
 import com.sdl.selenium.bootstrap.form.Form;
 import com.sdl.selenium.bootstrap.form.SelectPicker;
 import com.sdl.selenium.utils.config.WebDriverConfig;
+import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.form.TextField;
 import com.sdl.selenium.web.utils.PropertiesReader;
@@ -27,7 +28,7 @@ import java.util.List;
 public class ElementsTest extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElementsTest.class);
 
-    @Test
+    //@Test
     public void checkboxTest() {
         openPage();
 
@@ -39,7 +40,7 @@ public class ElementsTest extends TestBase {
         form.enterLabel.assertClick();
     }
 
-    @Test
+    //@Test
     public void selectTest() {
         openPage();
         SelectPicker picker = new SelectPicker().setLabel("Tech:");
@@ -53,7 +54,7 @@ public class ElementsTest extends TestBase {
         Assert.assertEquals(v, "Manual");
     }
 
-    @Test
+    //@Test
     public void dropDownTest() {
         openPage();
         DropDownList downList = new DropDownList().setLabel("Tech:");
@@ -70,7 +71,7 @@ public class ElementsTest extends TestBase {
     private UploadFile uploadBtn = new UploadFile(form, "TPT Test:");
     //private WebLocator inputUpload = new WebLocator(uploadBtn).setTag("input");
 
-    @Test
+    //@Test
     public void uploadTest() {
         openPage();
         String resourcesPath = PropertiesReader.RESOURCES_DIRECTORY_PATH;
@@ -84,7 +85,7 @@ public class ElementsTest extends TestBase {
         driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/bootstrap/index.html");
     }
 
-    @Test
+    //@Test
     public void invalidGmailAddressTest() {
         driver.get("https://gmail.com");
         TextField emailField = new TextField().setPlaceholder("Enter your email");
@@ -100,7 +101,7 @@ public class ElementsTest extends TestBase {
         //LOGGER.debug(error.getText());
     }
 
-    @Test
+    //@Test
     public void scrollToViewTest() {
         SenchaExampleView senchaExampleView = new SenchaExampleView();
 
@@ -119,7 +120,7 @@ public class ElementsTest extends TestBase {
 //        (new Actions(WebDriverConfig.getDriver())).dragAndDropBy(header.currentElement, -280, -35).build().perform();
     }
 
-    @Test
+    //@Test
     public void scrollTest(){
         SenchaExampleView exampleView = new SenchaExampleView();
         exampleView.open("Miscellaneous", "Resizable");
@@ -133,7 +134,9 @@ public class ElementsTest extends TestBase {
 
     @Test
     public void iterationThrouElements() {
-        driver.get("http://examples.sencha.com/extjs/6.0.2/examples/classic/view/data-view.html");
+        PropertiesReader appProperties = new PropertiesReader("src\\test\\resources\\app.properties");
+
+        driver.get(appProperties.getProperty("app.url"));
 
         WebLocator dataview = new WebLocator().setId("dataview-example");
         WebLocator wrap = new WebLocator(dataview).setClasses("thumb-wrap");
@@ -145,9 +148,14 @@ public class ElementsTest extends TestBase {
             LOGGER.debug(title);
         }
 
-        wrap.setPosition(3);
-        LOGGER.debug(img.getSelector().toString());
-        wrap.click();
+        WebLocator selectWrap = new WebLocator().setClasses("thumb-wrap").setText(appProperties.getProperty("dataview.select.item"), SearchType.DEEP_CHILD_NODE);
+//        WebLocator selectElement = new WebLocator().setText(appProperties.getProperty("dataview.select.item"));
+//        WebLocator selectWrap = new WebLocator().setClasses("thumb-wrap").setChildNodes(selectElement);
+        selectWrap.click();
+
+        //wrap.setPosition(3);
+        //LOGGER.debug(img.getSelector().toString());
+        //wrap.click();
 
 //        Utils.sleep(2000);
 //        List<WebElement> images = driver.findElements(By.cssSelector("#dataview-example img"));

@@ -81,8 +81,12 @@ public abstract class TestBase {
     }
 
     private static void startSuite() {
+        String browser = System.getProperty("browser", "chrome");
+
+        browser = browser.toUpperCase();
+        LOGGER.debug("browser: {}", browser);
         try {
-            driver = WebDriverConfig.getWebDriver(Browser.CHROME);
+            driver = WebDriverConfig.getWebDriver(Browser.valueOf(browser));
         } catch (Exception e) {
             LOGGER.error("Exception when start suite", e);
         }
