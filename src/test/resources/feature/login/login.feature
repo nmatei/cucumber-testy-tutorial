@@ -9,7 +9,7 @@ Feature: Customer I can login to web site
     And I type "badpass" into "Password" field
     And I click on input button with text "Login"
     Then I should see an element with text " A user could not be found with this email address."
-  
+
   Scenario: failed login using username
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
     When I login using "wronguser"/"pass"
@@ -37,7 +37,7 @@ Feature: Customer I can login to web site
     Then I should see an element with text "Log Out"
     And I should see following elements with texts "Recent Orders, My Addresses, Billing Address, Shipping Address"
     And I click on link with text "Log Out"
-    
+
   Scenario: Successfully login
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/shortcodes/my-account/"
     When I login using "admin"/"library"
