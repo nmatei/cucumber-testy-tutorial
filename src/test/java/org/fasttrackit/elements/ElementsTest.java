@@ -28,50 +28,11 @@ import java.util.List;
 public class ElementsTest extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElementsTest.class);
 
-    //@Test
-    public void checkboxTest() {
-        openPage();
-
-        FirstFormView form = new FirstFormView();
-        form.enterCheckbox.assertClick();
-        form.stopProcessCheckbox.assertClick();
-        Utils.sleep(3000);
-        form.stopProcessLabel.assertClick();
-        form.enterLabel.assertClick();
-    }
-
-    //@Test
-    public void selectTest() {
-        openPage();
-        SelectPicker picker = new SelectPicker().setLabel("Tech:");
-
-        String v = picker.getValue();
-        Assert.assertEquals(v, "Auto");
-
-        picker.select("Manual");
-
-        v = picker.getValue();
-        Assert.assertEquals(v, "Manual");
-    }
-
-    //@Test
-    public void dropDownTest() {
-        openPage();
-        DropDownList downList = new DropDownList().setLabel("Tech:");
-        downList.select("Manual");
-
-        DropDownList executeDownList = new DropDownList().setLabel("Execute");
-        executeDownList.select("No");
-
-        MultiSelectDropDownList sourceDownList = new MultiSelectDropDownList().setLabel("Source:");
-        sourceDownList.multiSelect("Tomatoes", "Mushrooms");
-    }
-
     private Form form = new Form("Form Title");
     private UploadFile uploadBtn = new UploadFile(form, "TPT Test:");
     //private WebLocator inputUpload = new WebLocator(uploadBtn).setTag("input");
 
-    //@Test
+    @Test
     public void uploadTest() {
         openPage();
         String resourcesPath = PropertiesReader.RESOURCES_DIRECTORY_PATH;
@@ -101,7 +62,7 @@ public class ElementsTest extends TestBase {
         //LOGGER.debug(error.getText());
     }
 
-    //@Test
+    @Test
     public void scrollToViewTest() {
         SenchaExampleView senchaExampleView = new SenchaExampleView();
 
@@ -120,7 +81,7 @@ public class ElementsTest extends TestBase {
 //        (new Actions(WebDriverConfig.getDriver())).dragAndDropBy(header.currentElement, -280, -35).build().perform();
     }
 
-    //@Test
+    @Test
     public void scrollTest(){
         SenchaExampleView exampleView = new SenchaExampleView();
         exampleView.open("Miscellaneous", "Resizable");

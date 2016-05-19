@@ -10,14 +10,15 @@ public class MultiSelectDropDownList extends DropDownList {
     }
 
     public boolean multiSelect(String... values) {
-        assertClick();
+        click();
         WebLocator select = new WebLocator().setClasses("btn-group", "open");
         for (String value : values) {
             WebLocator element = new WebLocator(select).withText(value, SearchType.CHILD_NODE);
-            element.assertClick();
+            element.click();
         }
-        WebLocator shadow = new WebLocator().setClasses("dropdown-backdrop");
-        shadow.assertClick();
+        //WebLocator shadow = new WebLocator().setClasses("dropdown-backdrop");
+        //shadow.assertClick();
+        click();
         return true;
     }
 }
