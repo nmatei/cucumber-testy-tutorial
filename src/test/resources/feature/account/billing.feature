@@ -8,8 +8,8 @@ Feature: As a Customer I can edit my billing address
   
   Scenario: User has correct Billing Address
     Given I click on edit Billing Address
-    Then field "Email Address" should have value "em_mihai@yahoo.com"
-    And field "Phone" should have value "0746827609"
+    Then field "Email Address" should have value "me@gmail.com"
+    And field "Phone" should have value "0790123456"
     
   Scenario: User can change zip code in Billing Address
     Given I type "10016" into "Zip" field
