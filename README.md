@@ -2,6 +2,8 @@
 
 Integration Tests with [Testy](https://github.com/sdl/Testy) and [Cucumber](https://cucumber.io/)
 
+## used for Automation 2 group
+
 ## Running the Tests:
 
     mvn clean test -DfailIfNoTests=false
