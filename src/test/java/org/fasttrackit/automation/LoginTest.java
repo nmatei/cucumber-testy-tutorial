@@ -38,6 +38,22 @@ public class LoginTest extends TestBase {
         assertThat(errorElement.getText(), is("Invalid user or password!"));
     }
 
+    @Test
+    public void changePasswordWithInvalidCurrentPassword(){
+        openBrowser();
+        login("eu@fast.com", "eu.pass");
+        WebElement preferencesBtn = driver.findElement(By.xpath("//button[@data-target='#preferences-win']"));
+        preferencesBtn.click();
+
+        WebElement currentPasswordField = driver.findElement(By.name("password"));
+        WebElement newPasswordField = driver.findElement(By.name("newPassword"));
+        WebElement repeatPasswordField = driver.findElement(By.name("newPasswordRepeat"));
+
+        currentPasswordField.sendKeys("wrong.pass");
+        newPasswordField.sendKeys("new.pass");
+        repeatPasswordField.sendKeys("new.pass");
+    }
+
     private void openBrowser() {
         System.out.println("ready");
         //driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
