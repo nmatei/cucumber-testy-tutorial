@@ -23,4 +23,11 @@ public abstract class TestBase {
             LOGGER.error("Exception when start suite", e);
         }
     }
+
+    protected void openBrowser() {
+        System.out.println("ready");
+        //driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+        driver.get("file:///C:/Producs/Testy/src/test/functional/app-demo/login.html");
+        System.out.println("------------------");
+    }
 }
