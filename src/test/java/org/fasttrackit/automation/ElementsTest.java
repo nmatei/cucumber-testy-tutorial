@@ -14,17 +14,16 @@ public class ElementsTest extends TestBase {
 
     private LoginView loginView = new LoginView();
 
+    private WebLocator stopProcessLabel = new WebLocator().setText("Stop the process?", SearchType.TRIM);
+    private WebLocator widthEnterLabel = new WebLocator().setText("Label with Enter.", SearchType.TRIM, SearchType.CHILD_NODE);
+    private CheckBox stopProcessCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[3]/label/input");
+    private CheckBox labelWidthEnterCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[4]/label/input");
+
     @Test
     public void checkboxesTest() {
         openLoginPage();
 
         loginView.login("eu@fast.com", "eu.pass");
-
-        CheckBox stopProcessCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[3]/label/input");
-        CheckBox labelWidthEnterCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[4]/label/input");
-
-        WebLocator stopProcessLabel = new WebLocator().setText("Stop the process?", SearchType.TRIM);
-        WebLocator widthEnterLabel = new WebLocator().setText("Label with Enter.", SearchType.TRIM, SearchType.CHILD_NODE);
 
         stopProcessCheckbox.click();
         labelWidthEnterCheckbox.click();
@@ -38,5 +37,6 @@ public class ElementsTest extends TestBase {
         widthEnterLabel.click();
 
         assertThat("Stop the process is not selected!", stopProcessCheckbox.isSelected(), is(true));
+        assertThat("Label with Enter.", labelWidthEnterCheckbox.isSelected(), is(true));
     }
 }
