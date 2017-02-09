@@ -39,7 +39,7 @@ public class ChangePasswordTest extends TestBase {
     }
 
     private void openPage() {
-        openBrowser();
+        openLoginPage();
 
         loginPage.login("eu@fast.com", "eu.pass");
         WebElement preferencesBtn = driver.findElement(By.xpath("//button[@data-target='#preferences-win']"));
