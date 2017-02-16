@@ -13,7 +13,6 @@ import static org.hamcrest.core.Is.is;
 public class LoginTest extends TestBase {
 
 //    private LoginPage page;
-    private LoginView page = new LoginView();
 
 //    public LoginTest() {
 //        page = PageFactory.initElements(driver, LoginPage.class);
@@ -23,7 +22,7 @@ public class LoginTest extends TestBase {
     public void validLoginTest() {
         openLoginPage();
 
-        page.login("eu@fast.com", "eu.pass");
+        loginView.login("eu@fast.com", "eu.pass");
 
         try {
             WebElement logoutBtn = driver.findElement(By.linkText("Logout"));
@@ -37,7 +36,7 @@ public class LoginTest extends TestBase {
     public void invalidPasswordTest() {
         openLoginPage();
 
-        page.login("eu@fast.com", "eu.pass123");
+        loginView.login("eu@fast.com", "eu.pass123");
 
         WebElement errorElement = driver.findElement(By.className("error-msg"));
         System.out.println(errorElement.getText());

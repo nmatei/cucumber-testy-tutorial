@@ -1,5 +1,6 @@
 package org.fasttrackit.util;
 
+import org.fasttrackit.automation.LoginView;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,8 @@ import com.sdl.selenium.web.Browser;
 public abstract class TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestBase.class);
     
-    public static WebDriver driver;
+    protected static WebDriver driver;
+    protected LoginView loginView = new LoginView();
 
     static {
         startSuite();
