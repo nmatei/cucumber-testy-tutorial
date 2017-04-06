@@ -15,6 +15,7 @@ public class ElementsView {
     public WebLocator menuDropDown = new WebLocator().setClasses("dropdown-menu");
     public WebLocator manualOption = new WebLocator(menuDropDown).setText("Manual");
 
+    public DropDown techDropDown = new DropDown();
 
     public static void main(String[] args) {
         ElementsView test = new ElementsView();

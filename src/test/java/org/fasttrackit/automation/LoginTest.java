@@ -1,5 +1,6 @@
 package org.fasttrackit.automation;
 
+import com.sdl.selenium.web.table.Table;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -22,7 +23,12 @@ public class LoginTest extends TestBase {
     public void validLoginTest() {
         openLoginPage();
 
-        loginView.login("eu@fast.com", "eu.pass");
+        Table users = new Table();
+
+        String user = users.getText(1, 1);
+        String pass = users.getText(1, 2);
+
+        loginView.login(user, pass);
 
         try {
             WebElement logoutBtn = driver.findElement(By.linkText("Logout"));
