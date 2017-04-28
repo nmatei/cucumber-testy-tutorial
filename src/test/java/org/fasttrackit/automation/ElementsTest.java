@@ -1,7 +1,11 @@
 package org.fasttrackit.automation;
 
+import com.sdl.selenium.bootstrap.button.Upload;
+import com.sdl.selenium.bootstrap.button.UploadFile;
 import com.sdl.selenium.bootstrap.form.DatePicker;
+import com.sdl.selenium.bootstrap.form.Form;
 import com.sdl.selenium.bootstrap.form.MultiSelect;
+import com.sdl.selenium.web.utils.PropertiesReader;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
@@ -21,7 +25,7 @@ public class ElementsTest extends TestBase {
     public void checkboxesTest() {
         openLoginPage();
 
-        loginView.login("eu@fast.com", "eu.pass");
+        loginView.login(config.getUser(), config.getPass());
 
         page.stopProcessCheckbox.click();
         page.labelWidthEnterCheckbox.click();
@@ -68,7 +72,18 @@ public class ElementsTest extends TestBase {
         Utils.sleep(500);
         dropDown.select("Auto");
 
-        MultiSelect source = new MultiSelect().setClasses("multiselect");//.setLabel("Source:");
-        source.select("Tomatoes", "Mozzarella");
+//        MultiSelect source = new MultiSelect().setClasses("multiselect");//.setLabel("Source:");
+//        source.select("Tomatoes", "Mozzarella");
+    }
+
+    private Form form = new Form("Form Title");
+    private UploadFile uploadFile = new UploadFile(form); //, "TPT Test:"
+
+    @Test
+    public void uploadTest() {
+        openLoginPage();
+        loginView.login("eu@fast.com", "eu.pass");
+
+        uploadFile.upload(PropertiesReader.RESOURCES_DIRECTORY_PATH + "\\feature\\login\\login.feature");
     }
 }
