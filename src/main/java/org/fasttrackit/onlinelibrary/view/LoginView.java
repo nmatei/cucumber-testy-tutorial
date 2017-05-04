@@ -32,7 +32,7 @@ public class LoginView extends WebLocator {
         userNameField.setValue(user);
         fakePasswordField.click(); // this is how ui is implemented
         passwordField.setValue(pass);
-        loginButton.assertClick();
+        loginButton.click();
     }
 
     public static void main(String[] args) {
