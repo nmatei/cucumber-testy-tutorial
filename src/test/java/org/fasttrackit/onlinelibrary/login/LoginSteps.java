@@ -18,7 +18,7 @@ public class LoginSteps extends TestBase {
 
     @When("^I click on Login button from top navigation menu$")
     public void I_click_on_Login_button_from_top_navigation_menu() {
-        topMenuNavigation.loginButton.assertClick();
+        topMenuNavigation.loginButton.click();
     }
     
     @When("^I login using \"([^\"]*)\"/\"([^\"]*)\"$")
@@ -28,7 +28,7 @@ public class LoginSteps extends TestBase {
 
     @Then("^I click on fake Password field$")
     public void fakePasswordClick() {
-        loginView.fakePasswordField.assertClick();
+        loginView.fakePasswordField.click();
     }
     
     @Then("^login should fail$")

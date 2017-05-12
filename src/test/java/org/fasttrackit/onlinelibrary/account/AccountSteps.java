@@ -12,13 +12,13 @@ public class AccountSteps extends TestBase {
     @Given("^I click on edit Billing Address$")
     public void I_click_on_edit_Billing_Address() {
         WebLink edit = new WebLink().setText("Edit").setLabel("Billing Address").setLabelTag("*");
-        edit.assertClick();
+        edit.click();
     }
 
     @Given("^I click on edit Shipping Address$")
     public void I_click_on_edit_Shipping_Address() {
         WebLink edit = new WebLink().setText("Edit").setLabel("Shipping Address").setLabelTag("*");
-        edit.assertClick();
+        edit.click();
     }
     
 }
