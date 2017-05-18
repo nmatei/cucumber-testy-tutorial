@@ -13,7 +13,7 @@ public class LoginTest extends TestBase {
 
     @Test
     public void validLoginTest() {
-        doLogin("eu@fast.com", "eu.pass");
+        doLogin(USER_NAME, PASSWORD);
 
         WebElement logoutBtn = driver.findElement(By.linkText("Logout"));
         logoutBtn.click();

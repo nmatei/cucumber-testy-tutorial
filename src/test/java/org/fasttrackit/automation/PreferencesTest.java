@@ -19,7 +19,7 @@ public class PreferencesTest extends TestBase {
 
     @Test
     public void preferencesWindowShouldCloseTest() {
-        doLogin("eu@fast.com", "eu.pass");
+        doLogin(USER_NAME, PASSWORD);
         page.open();
         page.close();
     }
@@ -45,28 +45,32 @@ public class PreferencesTest extends TestBase {
 
     @Test
     public void successChangePassTest() {
-        changePassword("eu.pass", "new.pass", "new.pass");
+        changePassword(PASSWORD, "new.pass", "new.pass");
 
         WebElement statusMsg = driver.findElement(By.xpath("//*[@id='preferences-win']//*[@class='status-msg']"));
         String message = statusMsg.getText();
         assertThat(message, is("Your password has been successfully changed."));
 
-        WebElement xBtn = driver.findElement(By.cssSelector("#preferences-win button.close"));
-        xBtn.click();
-
-        Utils.sleep(400);
+        page.close();
         WebElement logoutBtn = driver.findElement(By.linkText("Logout"));
         logoutBtn.click();
 
-        doLogin("eu@fast.com", "new.pass");
+        PASSWORD = "new.pass";
+        doLogin(USER_NAME, PASSWORD);
         logoutBtn = driver.findElement(By.linkText("Logout"));
         logoutBtn.click();
+
+        // revert to old pass
+        changePassword("new.pass", "eu.pass", "eu.pass");
+        statusMsg = driver.findElement(By.xpath("//*[@id='preferences-win']//*[@class='status-msg']"));
+        message = statusMsg.getText();
+        assertThat(message, is("Your password has been successfully changed."));
+        PASSWORD = "eu.pass";
     }
 
     private void changePassword(String pass, String newPass, String repeatPass) {
-        doLogin("eu@fast.com", "eu.pass");
+        doLogin(USER_NAME, PASSWORD);
         page.open();
-
         page.changePassword(pass, newPass, repeatPass);
     }
 

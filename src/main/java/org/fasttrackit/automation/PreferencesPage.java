@@ -40,5 +40,6 @@ public class PreferencesPage {
 
     public void close() {
         xBtn.click();
+        Utils.sleep(400);
     }
 }
