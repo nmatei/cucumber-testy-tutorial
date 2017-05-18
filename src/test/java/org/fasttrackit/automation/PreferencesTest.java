@@ -4,6 +4,7 @@ import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,17 +12,16 @@ import static org.hamcrest.core.Is.is;
 
 public class PreferencesTest extends TestBase {
 
+    private PreferencesPage page;
+    public PreferencesTest(){
+        page = PageFactory.initElements(driver, PreferencesPage.class);
+    }
+
     @Test
     public void preferencesWindowShouldCloseTest() {
         doLogin("eu@fast.com", "eu.pass");
-
-        WebElement preferencesBtn = driver.findElement(By.cssSelector(".navbar-header button"));
-        preferencesBtn.click();
-
-        Utils.sleep(400);
-//        WebElement closeBtn = driver.findElement(By.cssSelector("#preferences-win .modal-footer button"));
-        WebElement xBtn = driver.findElement(By.cssSelector("#preferences-win button.close"));
-        xBtn.click();
+        page.open();
+        page.close();
     }
 
 
@@ -65,18 +65,9 @@ public class PreferencesTest extends TestBase {
 
     private void changePassword(String pass, String newPass, String repeatPass) {
         doLogin("eu@fast.com", "eu.pass");
-        WebElement preferencesBtn = driver.findElement(By.cssSelector(".navbar-header button"));
-        preferencesBtn.click();
+        page.open();
 
-        WebElement passwordField = driver.findElement(By.xpath("//*[@id='preferences-win']//input[@name='password']"));
-        WebElement newPasswordField = driver.findElement(By.xpath("//*[@id='preferences-win']//input[@name='newPassword']"));
-        WebElement confirmPasswordField = driver.findElement(By.xpath("//*[@id='preferences-win']//input[@name='newPasswordRepeat']"));
-        WebElement saveBtn = driver.findElement(By.xpath("//*[@id='preferences-win']//button[text()='Save']"));
-
-        passwordField.sendKeys(pass);
-        newPasswordField.sendKeys(newPass);
-        confirmPasswordField.sendKeys(repeatPass);
-        saveBtn.click();
+        page.changePassword(pass, newPass, repeatPass);
     }
 
 
