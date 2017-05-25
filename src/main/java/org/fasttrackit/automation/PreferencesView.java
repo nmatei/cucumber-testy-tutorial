@@ -5,21 +5,23 @@ import com.sdl.selenium.web.button.Button;
 import com.sdl.selenium.web.form.TextField;
 import com.sdl.selenium.web.utils.Utils;
 
-public class PreferencesView {
+public class PreferencesView extends WebLocator {
     private Button preferencesBtn = new Button().setText("Preferences");
 
-    private WebLocator win = new WebLocator().setId("preferences-win");
+    public PreferencesView(){
+        setId("preferences-win");
+    }
 
-    private Button xBtn = new Button(win).setClasses("close");
+    private Button xBtn = new Button(this).setClasses("close");
 
-    private TextField passwordField = new TextField(win).setName("password");
-    private TextField newPasswordField = new TextField(win).setName("newPassword");
-    private TextField confirmPasswordField = new TextField(win).setName("newPasswordRepeat");
-    private Button saveBtn = new Button(win).setText("Save");
+    private TextField passwordField = new TextField(this).setName("password");
+    private TextField newPasswordField = new TextField(this).setName("newPassword");
+    private TextField confirmPasswordField = new TextField(this).setName("newPasswordRepeat");
+    private Button saveBtn = new Button(this).setText("Save");
 
-    private WebLocator statusMsg = new WebLocator(win).setClasses("status-msg");
+    private WebLocator statusMsg = new WebLocator(this).setClasses("status-msg");
 
-    private Button closeBtn = new Button(win).setText("Close");
+    private Button closeBtn = new Button(this).setText("Close");
 
     public void changePassword(String pass, String newPass, String repeatPass) {
         passwordField.setValue(pass);
@@ -36,5 +38,9 @@ public class PreferencesView {
     public void close() {
         xBtn.click();
         Utils.sleep(400);
+    }
+
+    public String getStatusMsg() {
+        return statusMsg.getText();
     }
 }
