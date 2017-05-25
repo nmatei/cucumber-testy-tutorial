@@ -12,10 +12,7 @@ import static org.hamcrest.core.Is.is;
 
 public class PreferencesTest extends TestBase {
 
-    private PreferencesPage page;
-    public PreferencesTest(){
-        page = PageFactory.initElements(driver, PreferencesPage.class);
-    }
+    private PreferencesView page = new PreferencesView();
 
     @Test
     public void preferencesWindowShouldCloseTest() {
