@@ -16,8 +16,10 @@ import org.testng.annotations.AfterMethod;
 public abstract class TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestBase.class);
 
-    public static String USER_NAME = "eu@fast.com";
-    public static String PASSWORD = "eu.pass";
+    protected static PropertiesReader config = new PropertiesReader("src\\main\\resources\\config.properties");
+
+    public static String USER_NAME = config.getProperty("valid.user");
+    public static String PASSWORD = config.getProperty("valid.pass");
 
     public static WebDriver driver;
 
@@ -36,8 +38,6 @@ public abstract class TestBase {
     }
 
     public void doLogin(String user, String pass) {
-        PropertiesReader config = new PropertiesReader("src\\main\\resources\\config.properties");
-
         String url = config.getProperty("test.url");
 
         driver.get(url);
