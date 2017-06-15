@@ -36,7 +36,11 @@ public abstract class TestBase {
     }
 
     public void doLogin(String user, String pass) {
-        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
+        PropertiesReader config = new PropertiesReader("config.properties");
+
+        String url = System.getProperty("test.url", "");
+
+        driver.get(url);
 
         loginPage.login(user, pass);
     }
