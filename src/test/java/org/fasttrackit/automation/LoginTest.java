@@ -1,10 +1,14 @@
 package org.fasttrackit.automation;
 
+import com.sdl.selenium.WebLocatorUtils;
+import com.sdl.selenium.web.WebLocator;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

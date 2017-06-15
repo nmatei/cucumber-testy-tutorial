@@ -36,9 +36,9 @@ public abstract class TestBase {
     }
 
     public void doLogin(String user, String pass) {
-        PropertiesReader config = new PropertiesReader("config.properties");
+        PropertiesReader config = new PropertiesReader("src\\main\\resources\\config.properties");
 
-        String url = System.getProperty("test.url", "");
+        String url = config.getProperty("test.url");
 
         driver.get(url);
 
