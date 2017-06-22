@@ -37,6 +37,10 @@ public abstract class TestBase {
         }
     }
 
+    public void doLogin() {
+        doLogin(USER_NAME, PASSWORD);
+    }
+
     public void doLogin(String user, String pass) {
         String url = config.getUrl();
 
